@@ -75,6 +75,12 @@ class HourlyEmployeeTest {
     }
 
     @Test
+    void testNegativeHours() {
+        IPayStub payStub = employee.runPayroll(-1.0);
+        assertNull(payStub);
+    }
+
+    @Test
     void testGetYTDEarnings() {
         assertEquals(8000.00, employee.getYTDEarnings(), 0.01);
         employee.runPayroll(40.0);
