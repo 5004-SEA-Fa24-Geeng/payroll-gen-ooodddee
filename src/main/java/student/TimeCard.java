@@ -22,9 +22,7 @@ public class TimeCard implements ITimeCard {
         if (employeeID == null || employeeID.trim().isEmpty()) {
             throw new IllegalArgumentException("Employee ID cannot be null or empty");
         }
-        if (hoursWorked == null || hoursWorked.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Hours worked cannot be null or negative");
-        }
+
         this.employeeID = employeeID;
         this.hoursWorked = hoursWorked;
     }
