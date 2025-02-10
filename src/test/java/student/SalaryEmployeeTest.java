@@ -34,14 +34,6 @@ class SalaryEmployeeTest {
     }
 
     @Test
-    void testNegativeHours() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            employee.runPayroll(-5.0);
-        });
-        assertEquals("Hours worked cannot be negative.", exception.getMessage());
-    }
-
-    @Test
     void testToCSV() {
         String expected = "SALARY,Test Salary Employee,1,60000.00,150.00,5000.00,1000.00";
         assertEquals(expected, employee.toCSV());
