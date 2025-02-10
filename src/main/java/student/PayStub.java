@@ -22,11 +22,20 @@ public class PayStub implements IPayStub {
     /**
      * Constructs a new PayStub with the specified parameters.
      *
-     * @param employee The employee associated with this pay stub
-     * @param netPay   The net pay amount after taxes and deductions
-     * @param taxes    The amount of taxes withheld
+     * @param employee      The employee associated with this pay stub
+     * @param netPay        The net pay amount after taxes and deductions
+     * @param taxes         The amount of taxes withheld
+     * @param ytdEarnings   The total year-to-date earnings of the employee
+     * @param ytdTaxesPaid  The total year-to-date taxes paid by the employee
+     * @throws IllegalArgumentException if any arguments are null or negative
      */
-    public PayStub(IEmployee employee, BigDecimal netPay, BigDecimal taxes, BigDecimal ytdEarnings, BigDecimal ytdTaxesPaid) {
+    public PayStub(
+            IEmployee employee,
+            BigDecimal netPay,
+            BigDecimal taxes,
+            BigDecimal ytdEarnings,
+            BigDecimal ytdTaxesPaid) {
+
         if (employee == null) {
             throw new IllegalArgumentException("Employee cannot be null.");
         }
@@ -51,7 +60,9 @@ public class PayStub implements IPayStub {
     }
 
     /**
-     * @return The net pay amount as a double
+     * Returns the net pay amount as a double.
+     *
+     * @return The net pay amount
      */
     @Override
     public double getPay() {
@@ -59,7 +70,9 @@ public class PayStub implements IPayStub {
     }
 
     /**
-     * @return The taxes paid amount as a double
+     * Returns the taxes paid amount as a double.
+     *
+     * @return The taxes paid amount
      */
     @Override
     public double getTaxesPaid() {
@@ -69,17 +82,17 @@ public class PayStub implements IPayStub {
     /**
      * Converts the pay stub information to a CSV format string.
      *
-     * @return A CSV string containing employee name, pay amount, taxes paid, YTD
-     *         earnings, and YTD taxes
+     * @return A CSV string containing employee name, pay amount, taxes paid, YTD earnings, and YTD taxes
      */
     @Override
     public String toCSV() {
-        return String.format("%s,%.2f,%.2f,%.2f,%.2f",
+        return String.format(
+                "%s,%.2f,%.2f,%.2f,%.2f",
                 employee.getName(),
                 getPay(),
                 getTaxesPaid(),
                 employee.getYTDEarnings(),
-                employee.getYTDTaxesPaid());
+                employee.getYTDTaxesPaid()
+        );
     }
-
 }
