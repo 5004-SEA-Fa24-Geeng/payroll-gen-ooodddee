@@ -146,14 +146,26 @@ public abstract class EmployeeBigDecimal implements IEmployee {
 
         BigDecimal grossPay = calculateGrossPay(hoursWorked);
         BigDecimal taxableAmount = grossPay.subtract(pretaxDeductions);
+
+        // Ensure taxable amount is never negative
+        if (taxableAmount.compareTo(BigDecimal.ZERO) < 0) {
+            taxableAmount = BigDecimal.ZERO;
+        }
+
         BigDecimal taxes = taxableAmount.multiply(TAX_RATE);
         BigDecimal netPay = taxableAmount.subtract(taxes);
+
+        // Ensure net pay is never negative
+        if (netPay.compareTo(BigDecimal.ZERO) < 0) {
+            netPay = BigDecimal.ZERO;
+        }
 
         ytdEarnings = ytdEarnings.add(netPay);
         ytdTaxesPaid = ytdTaxesPaid.add(taxes);
 
         return new PayStub(this, netPay, taxes, ytdEarnings, ytdTaxesPaid);
     }
+
 
     /**
      * Converts employee data to a CSV string.
