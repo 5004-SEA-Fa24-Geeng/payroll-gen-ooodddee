@@ -46,27 +46,27 @@ public abstract class EmployeeBigDecimal implements IEmployee {
             BigDecimal ytdTaxesPaid,
             EmployeeType employeeType) {
 
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Employee name cannot be empty.");
-        }
-        if (id == null || id.trim().isEmpty()) {
-            throw new IllegalArgumentException("Employee ID cannot be empty.");
-        }
-        if (payRate == null || payRate.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Pay rate must be positive.");
-        }
-        if (pretaxDeductions == null || pretaxDeductions.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Pretax deductions cannot be negative.");
-        }
-        if (ytdEarnings == null || ytdEarnings.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("YTD earnings cannot be negative.");
-        }
-        if (ytdTaxesPaid == null || ytdTaxesPaid.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("YTD taxes paid cannot be negative.");
-        }
-        if (employeeType == null) {
-            throw new IllegalArgumentException("Employee type must be specified.");
-        }
+//        if (name == null || name.trim().isEmpty()) {
+//            throw new IllegalArgumentException("Employee name cannot be empty.");
+//        }
+//        if (id == null || id.trim().isEmpty()) {
+//            throw new IllegalArgumentException("Employee ID cannot be empty.");
+//        }
+//        if (payRate == null || payRate.compareTo(BigDecimal.ZERO) < 0) {
+//            throw new IllegalArgumentException("Pay rate must be positive.");
+//        }
+//        if (pretaxDeductions == null || pretaxDeductions.compareTo(BigDecimal.ZERO) < 0) {
+//            throw new IllegalArgumentException("Pretax deductions cannot be negative.");
+//        }
+//        if (ytdEarnings == null || ytdEarnings.compareTo(BigDecimal.ZERO) < 0) {
+//            throw new IllegalArgumentException("YTD earnings cannot be negative.");
+//        }
+//        if (ytdTaxesPaid == null || ytdTaxesPaid.compareTo(BigDecimal.ZERO) < 0) {
+//            throw new IllegalArgumentException("YTD taxes paid cannot be negative.");
+//        }
+//        if (employeeType == null) {
+//            throw new IllegalArgumentException("Employee type must be specified.");
+//        }
 
         this.name = name;
         this.id = id;
