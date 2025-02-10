@@ -141,7 +141,7 @@ public abstract class EmployeeBigDecimal implements IEmployee {
     @Override
     public IPayStub runPayroll(double hoursWorked) {
         if (hoursWorked < 0) {
-            return null;
+            throw new IllegalArgumentException("Hours worked cannot be negative.");
         }
 
         BigDecimal grossPay = calculateGrossPay(hoursWorked);

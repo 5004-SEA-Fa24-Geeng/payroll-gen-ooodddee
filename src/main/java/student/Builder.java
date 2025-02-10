@@ -84,9 +84,13 @@ public final class Builder {
         String employeeID = parts[0].trim();
         try {
             BigDecimal hoursWorked = new BigDecimal(parts[1].trim());
+            if (hoursWorked.compareTo(BigDecimal.ZERO) < 0) {
+                throw new IllegalArgumentException("Hours worked cannot be negative.");
+            }
             return new TimeCard(employeeID, hoursWorked);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Invalid number format in time card CSV: " + csv, e);
         }
     }
+
 }
