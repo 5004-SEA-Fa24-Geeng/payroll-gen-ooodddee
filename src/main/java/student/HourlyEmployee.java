@@ -68,7 +68,7 @@ public class HourlyEmployee extends EmployeeBigDecimal {
     @Override
     public BigDecimal calculateGrossPay(double hoursWorked) {
         if (hoursWorked < 0) {
-            throw new IllegalArgumentException("Hours worked cannot be negative.");
+            return BigDecimal.ZERO;
         }
 
         BigDecimal hoursWorkedBD = BigDecimal.valueOf(hoursWorked);
