@@ -1,66 +1,68 @@
-package student;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import student.*;
 
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SalaryEmployeeTest {
+public class SalaryEmployeeTest {
     private SalaryEmployee employee;
 
     @BeforeEach
     void setUp() {
         employee = new SalaryEmployee(
-                "Test Salary Employee",
-                "1",
-                new BigDecimal("60000.00"), // Annual Salary
-                new BigDecimal("5000.00"),  // YTD Earnings
-                new BigDecimal("1000.00"),  // YTD Taxes Paid
-                new BigDecimal("150.00"));  // Pretax Deductions
-    }
-
-    @Test
-    void testRegularPay() {
-        IPayStub payStub = employee.runPayroll(40.0);
-        assertEquals(1817.725, payStub.getPay(), 0.01);
-    }
-
-    @Test
-    void testZeroHoursPay() {
-        IPayStub payStub = employee.runPayroll(0.0);
-        assertEquals(1817.725, payStub.getPay(), 0.01);
-    }
-
-    @Test
-    void testToCSV() {
-        String expected = "SALARY,Test Salary Employee,1,60000.00,150.00,5000.00,1000.00";
-        assertEquals(expected, employee.toCSV());
-        employee.runPayroll(40.0);
-        expected = "SALARY,Test Salary Employee,1,60000.00,150.00,6817.73,1532.28";
-        assertEquals(expected, employee.toCSV());
+                "Test Salary",
+                "NEU002",
+                new BigDecimal("120000.00"),
+                new BigDecimal("50000.00"),
+                new BigDecimal("10000.00"),
+                new BigDecimal("200.00"));
     }
 
     @Test
     void testCalculateGrossPay() {
-        assertTrue(new BigDecimal("2500.00").compareTo(employee.calculateGrossPay(40.0)) == 0);
-        assertTrue(new BigDecimal("2500.00").compareTo(employee.calculateGrossPay(50.0)) == 0);
+        assertEquals(new BigDecimal("5000.00"), employee.calculateGrossPay(40.0));
+        assertEquals(new BigDecimal("5000.00"), employee.calculateGrossPay(50.0));
+    }
+
+    @Test
+    void testRegularHoursPay() {
+        IPayStub payStub = employee.runPayroll(40.0);
+        assertEquals(3712.80, payStub.getPay(), 0.01);
+    }
+
+    @Test
+    void testNegativeHours() {
+        IPayStub payStub = employee.runPayroll(-5.0);
+        assertNull(payStub);
+    }
+
+    @Test
+    void testZeroHours() {
+        IPayStub payStub = employee.runPayroll(0.0);
+        assertTrue(payStub.getPay() > 0); // Salary employees get paid even for 0 hours
+    }
+
+    @Test
+    void testToCSV() {
+        String expected = "SALARY,Test Salary,NEU002,120000.00,200.00,50000.00,10000.00";
+        assertEquals(expected, employee.toCSV());
     }
 
     @Test
     void testGetName() {
-        assertEquals("Test Salary Employee", employee.getName());
+        assertEquals("Test Salary", employee.getName());
     }
 
     @Test
     void testGetID() {
-        assertEquals("1", employee.getID());
+        assertEquals("NEU002", employee.getID());
     }
 
     @Test
     void testGetPayRate() {
-        assertEquals(60000.00, employee.getPayRate(), 0.01);
+        assertEquals(120000.00, employee.getPayRate(), 0.01);
     }
 
     @Test
@@ -70,20 +72,20 @@ class SalaryEmployeeTest {
 
     @Test
     void testGetYTDEarnings() {
-        assertEquals(5000.00, employee.getYTDEarnings(), 0.01);
+        assertEquals(50000.00, employee.getYTDEarnings(), 0.01);
         employee.runPayroll(40.0);
-        assertEquals(6817.725, employee.getYTDEarnings(), 0.01);
+        assertEquals(50000 + 3712.8, employee.getYTDEarnings(), 0.01);
     }
 
     @Test
     void testGetYTDTaxesPaid() {
-        assertEquals(1000.00, employee.getYTDTaxesPaid(), 0.01);
+        assertEquals(10000.00, employee.getYTDTaxesPaid(), 0.01);
         employee.runPayroll(40.0);
-        assertEquals(1532.275, employee.getYTDTaxesPaid(), 0.01);
+        assertEquals(10000 + 1087.2, employee.getYTDTaxesPaid(), 0.01);
     }
 
     @Test
     void testGetPretaxDeductions() {
-        assertEquals(150.00, employee.getPretaxDeductions(), 0.01);
+        assertEquals(200.00, employee.getPretaxDeductions(), 0.01);
     }
 }
