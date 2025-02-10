@@ -11,19 +11,17 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Contains simple utilities for reading in a file. You are free to modify this file as you
+ * Contains simple utilities for reading in a file. You are free to modify this
+ * file as you
  * need/want, but it is not required.
  */
 public final class FileUtil {
     /** header line required when writing out to the employee file. */
-    public static final String EMPLOYEE_HEADER =
-            "employee_type,name,ID,payRate,pretaxDeductions,YTDEarnings,YTDTaxesPaid";
+    public static final String EMPLOYEE_HEADER = "employee_type,name,ID,payRate,pretaxDeductions,"
+            + "YTDEarnings,YTDTaxesPaid";
 
     /** header line required when writing out to the pay stub file. */
-    public static final String PAY_STUB_HEADER =
-            "employee_name,net_pay,taxes,ytd_earnings,ytd_taxes_paid";
-
-
+    public static final String PAY_STUB_HEADER = "employee_name,net_pay,taxes,ytd_earnings,ytd_taxes_paid";
 
     /**
      * Private constructor to prevent instantiation.
@@ -33,7 +31,8 @@ public final class FileUtil {
     }
 
     /**
-     * Reads in a text file and returns a list of strings, one for each line in the file.
+     * Reads in a text file and returns a list of strings, one for each line in the
+     * file.
      * 
      * @param file the file name
      * @return a list of strings, one for each line in the file
@@ -49,13 +48,11 @@ public final class FileUtil {
         return lines;
     }
 
-
-
     /**
      * Writes the lines to the file. Will backup teh file if it exists.
      * 
      * @param outFile the file name
-     * @param lines the lines to write
+     * @param lines   the lines to write
      */
     public static void writeFile(String outFile, List<String> lines) {
         writeFile(outFile, lines, true);
@@ -65,8 +62,8 @@ public final class FileUtil {
      * Writes the lines to the file.
      * 
      * @param outFile the file name
-     * @param lines the lines to write
-     * @param backup if true, will backup the file if it exists
+     * @param lines   the lines to write
+     * @param backup  if true, will backup the file if it exists
      */
     public static void writeFile(String outFile, List<String> lines, boolean backup) {
         if (backup) {

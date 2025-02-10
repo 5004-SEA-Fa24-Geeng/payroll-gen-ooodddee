@@ -22,7 +22,6 @@ public class TestPayrollGenerator {
     @TempDir
     static Path tempDir;
 
-
     @Test
     public void testFinalPayStub() throws IOException {
         // copy employees.csv into tempDir
@@ -32,18 +31,14 @@ public class TestPayrollGenerator {
         // get the path of the paystubs.csv
         Path payStubs = tempDir.resolve("paystubs.csv");
 
-
-
-        String[] args = {"-e", employees.toString(), "-t", "resources/time_cards.csv", // allowed,
-                                                                                       // this isn't
-                                                                                       // modified -
-                                                                                       // so safe
-                "-o", payStubs.toString()};
+        String[] args = { "-e", employees.toString(), "-t", "resources/time_cards.csv", // allowed,
+                                                                                        // this isn't
+                                                                                        // modified -
+                                                                                        // so safe
+                "-o", payStubs.toString() };
 
         // run main method
         PayrollGenerator.main(args);
-
-
 
         String expectedPayStubs = Files
                 .readString(Paths.get("resources/original/pay_stubs_solution_to_original.csv"));
@@ -52,11 +47,8 @@ public class TestPayrollGenerator {
 
         assertEquals(expectedPayStubs, actualPayStubs);
 
-
         // you could also read lines and compared the lists
 
-
     }
-
 
 }

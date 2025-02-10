@@ -1,12 +1,12 @@
 package student;
 
-
 /**
  * An interface for the concept of the employee.
  * 
  * DO NOT MODIFY THIS FILE! (unless you are cleaning up comments/style changes)
  * 
- * This file is provided, and we will be grading every function implemented in as a unit test for
+ * This file is provided, and we will be grading every function implemented in
+ * as a unit test for
  * both SalaryEmployee and HourlyEmployee.
  */
 public interface IEmployee {
@@ -31,7 +31,6 @@ public interface IEmployee {
      * @return the pay rate of the employee
      */
     double getPayRate();
-
 
     /**
      * Gets the employee's Type as a string.
@@ -60,41 +59,53 @@ public interface IEmployee {
     double getYTDTaxesPaid();
 
     /**
-     * Gets pretax deductions for the employee. Yes, on a normal paycheck this varies as either set
+     * Gets pretax deductions for the employee. Yes, on a normal paycheck this
+     * varies as either set
      * amounts or percents, and often more than one type of deduction.
      * 
-     * For now, you can just assume a single pretax deduction as a whole dollar amount.
+     * For now, you can just assume a single pretax deduction as a whole dollar
+     * amount.
      * 
      * @return the pretax deductions for the employee
      */
     double getPretaxDeductions();
 
-
     /**
      * Runs the employee's payroll.
      * 
-     * This will calculate the pay for the current pay, update the YTD earnings, and update the
+     * This will calculate the pay for the current pay, update the YTD earnings, and
+     * update the
      * taxes paid YTD.
      * 
-     * taxes are calculated as 1.45% for medicare, 6.2% for social security, and 15% for
-     * withholding. or 22.65% total. They are calculated on the net pay (after pretax deductions).
+     * taxes are calculated as 1.45% for medicare, 6.2% for social security, and 15%
+     * for
+     * withholding. or 22.65% total. They are calculated on the net pay (after
+     * pretax deductions).
      * 
-     * For hourly employees, the pay is calculated as payRate * hoursWorked for the first 40 hours,
+     * For hourly employees, the pay is calculated as payRate * hoursWorked for the
+     * first 40 hours,
      * then payRate * 1.5 * (hoursWorked - 40) for overtime.
      * 
-     * For salary employees, it is pay rate divided by 24 for two payments every month.
+     * For salary employees, it is pay rate divided by 24 for two payments every
+     * month.
      * 
-     * If either type of employee has < 0 hours, they are skipped this payroll period. 
+     * If either type of employee has < 0 hours, they are skipped this payroll
+     * period.
      * (suggestion return null, and skip adding nulls to your paystub list)
      * 
      * Final net pay is calculated as pay - pretaxDeductions - taxes.
      * 
-     * All numbers (across all methods) are rounded to the nearest cent. (2 decimal places)
+     * All numbers (across all methods) are rounded to the nearest cent. (2 decimal
+     * places)
      * 
-     * SUGGESTION: You may want to use BigDecimal for the calculations to avoid floating point errors.
-     * SUGGESTION: You may want to create an protected abstract calculateGrossPay(double hoursWorked) 
-     * method to calculate the gross pay for the pay period, as runPayroll is exactly
-     * the same for both SalaryEmployee and HourlyEmployee, but calculateGrossPay is different.
+     * SUGGESTION: You may want to use BigDecimal for the calculations to avoid
+     * floating point errors.
+     * SUGGESTION: You may want to create an protected abstract
+     * calculateGrossPay(double hoursWorked)
+     * method to calculate the gross pay for the pay period, as runPayroll is
+     * exactly
+     * the same for both SalaryEmployee and HourlyEmployee, but calculateGrossPay is
+     * different.
      * 
      * @param hoursWorked the hours worked for the pay period
      * 
@@ -102,9 +113,6 @@ public interface IEmployee {
      * 
      */
     IPayStub runPayroll(double hoursWorked);
-
-
-
 
     /**
      * Converts the employee to a CSV string.
@@ -120,6 +128,5 @@ public interface IEmployee {
      * @return the employee as a CSV string
      */
     String toCSV();
-
 
 }
