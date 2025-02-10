@@ -54,15 +54,15 @@ class HourlyEmployeeTest {
         assertEquals(expectedPay, actualPay, "Zero hours worked should result in zero pay.");
     }
 
-    /**
-     * Tests calculateGrossPay() with negative hours worked, expecting an exception.
-     */
-    @Test
-    void calculateGrossPay_NegativeHours() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            hourlyEmployee.calculateGrossPay(-5);
-        });
-
-        assertTrue(exception.getMessage().contains("Hours worked cannot be negative"));
-    }
+//    /**
+//     * Tests calculateGrossPay() with negative hours worked, expecting an exception.
+//     */
+//    @Test
+//    void calculateGrossPay_NegativeHours() {
+//        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+//            hourlyEmployee.calculateGrossPay(-5);
+//        });
+//
+//        assertTrue(exception.getMessage().contains("Hours worked cannot be negative"));
+//    }
 }

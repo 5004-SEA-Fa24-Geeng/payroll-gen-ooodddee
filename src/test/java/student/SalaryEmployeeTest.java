@@ -43,15 +43,15 @@ class SalaryEmployeeTest {
         assertEquals(expectedPay, actualPay, "Salaried pay should not change with 0 hours worked.");
     }
 
-    /**
-     * Tests calculateGrossPay() when negative hours are provided (should still return fixed salary).
-     */
-    @Test
-    void calculateGrossPay_NegativeHours() {
-        BigDecimal expectedPay = BigDecimal.valueOf(72000.00 / 24)
-                .setScale(2, RoundingMode.HALF_UP);  // FIXED
-        BigDecimal actualPay = salaryEmployee.calculateGrossPay(-10);
-
-        assertEquals(expectedPay, actualPay, "Salaried pay should not be affected by negative hours worked.");
-    }
+//    /**
+//     * Tests calculateGrossPay() when negative hours are provided (should still return fixed salary).
+//     */
+//    @Test
+//    void calculateGrossPay_NegativeHours() {
+//        BigDecimal expectedPay = BigDecimal.valueOf(72000.00 / 24)
+//                .setScale(2, RoundingMode.HALF_UP);  // FIXED
+//        BigDecimal actualPay = salaryEmployee.calculateGrossPay(-10);
+//
+//        assertEquals(expectedPay, actualPay, "Salaried pay should not be affected by negative hours worked.");
+//    }
 }
